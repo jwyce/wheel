@@ -23,7 +23,7 @@ fn main() {
     let rand_lang = languages[rng.gen_range(0..num_langs)].clone();
 
     let one_second = time::Duration::from_secs(1);
-    let rand_secs = rng.gen_range(3..60);
+    let rand_secs = rng.gen_range(3..30);
     for n in (1..=rand_secs).rev() {
         print!("{esc}c", esc = 27 as char);
         let fig_num = standard_font.convert(&format!("{n}")).unwrap();
@@ -34,7 +34,10 @@ fn main() {
     print!("{esc}c", esc = 27 as char);
     let figure = standard_font.convert(&format!("{rand_lang}")).unwrap();
     let text = format!("{:^50}", figure.to_string());
-    text.clone().rainbow_with_speed(4);
+
+    for _n in 1..=10 {
+        text.clone().rainbow_with_speed(4);
+    }
 
     let p: f32 = rng.gen();
     let h = (p * 1500.0 % 360.0) / 360.0;
